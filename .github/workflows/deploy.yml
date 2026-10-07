@@ -1,13 +1,13 @@
-# NimbusCloud Platform Ã¢â‚¬â€ GitHub Actions CI/CD Pipeline
-# Ã¢Å¡Â Ã¯Â¸Â BROKEN Ã¢â‚¬â€ multiple issues preventing successful deployment
+# NimbusCloud Platform Ã¢â‚¬â€ GitHub Actions CI/CD Pipeline
+# Ã¢Å¡Â Ã¯Â¸Â BROKEN Ã¢â‚¬â€ multiple issues preventing successful deployment
 # Last modified: 2026-04-20 (Jordan Reeves)
-# Status: FAILING Ã¢â‚¬â€ see most recent run for error details
+# Status: FAILING Ã¢â‚¬â€ see most recent run for error details
 #
 # KNOWN ISSUES (candidate must fix all):
 # 1. Missing secret: DOCKER_PASSWORD not configured in repo settings
 # 2. Wrong ECR registry path: references old registry nimbuscloud-ecr-old
-# 3. No lint step Ã¢â‚¬â€ broken code can reach production
-# 4. No test step Ã¢â‚¬â€ no quality gate
+# 3. No lint step Ã¢â‚¬â€ broken code can reach production
+# 4. No test step Ã¢â‚¬â€ no quality gate
 # 5. Deploy step references deleted Kubernetes context nimbuscloud-platform-cluster
 
 name: NimbusCloud Platform CI/CD
@@ -22,8 +22,8 @@ on:
 
 env:
   AWS_REGION: eu-west-2
-  # Ã¢Å¡Â Ã¯Â¸Â BUG: ECR registry path is wrong Ã¢â‚¬â€ old registry no longer exists
-  ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}  # Ã¢â€ Â WRONG Ã¢â‚¬â€ should be ECR_REGISTRY
+  # Ã¢Å¡Â Ã¯Â¸Â BUG: ECR registry path is wrong Ã¢â‚¬â€ old registry no longer exists
+  ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}  # Ã¢â€ Â WRONG Ã¢â‚¬â€ should be ECR_REGISTRY
 
 jobs:
    lint:
@@ -45,10 +45,10 @@ jobs:
       - name: Run ESLint
         working-directory: ./services/booking-api
         run: npm run lint
-   #Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-  # Ã¢Å¡Â Ã¯Â¸Â MISSING: lint job Ã¢â‚¬â€ no code quality gate
+   #Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  # Ã¢Å¡Â Ã¯Â¸Â MISSING: lint job Ã¢â‚¬â€ no code quality gate
   # Candidate must add an ESLint / flake8 / golint step
-  # Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  # Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
    test:
     name: Test
     runs-on: ubuntu-latest
@@ -68,16 +68,16 @@ jobs:
       - name: Run tests
         working-directory: ./services/booking-api
         run: npm test -- --passWithNoTests
-  # Ã¢Å¡Â Ã¯Â¸Â MISSING: test job Ã¢â‚¬â€ no automated tests run
+  # Ã¢Å¡Â Ã¯Â¸Â MISSING: test job Ã¢â‚¬â€ no automated tests run
   # Candidate must add npm test / pytest / go test step
-  # Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+  # Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
 
    build:
     name: Build and Push Images
     runs-on: ubuntu-latest
     needs: [lint, test]
 
-    # Ã¢Å¡Â Ã¯Â¸Â Missing needs: [lint, test] Ã¢â‚¬â€ add when those jobs exist
+    # Ã¢Å¡Â Ã¯Â¸Â Missing needs: [lint, test] Ã¢â‚¬â€ add when those jobs exist
 
     steps:
       - name: Checkout code
@@ -102,7 +102,7 @@ jobs:
         with:
           context: ./services/booking-api
           push: ${{ github.event_name != 'pull_request' }}
-          # Ã¢Å¡Â Ã¯Â¸Â BUG: ECR_REGISTRY_OLD is wrong variable name
+          # Ã¢Å¡Â Ã¯Â¸Â BUG: ECR_REGISTRY_OLD is wrong variable name
           tags: ${{ env.ECR_REGISTRY }}/booking-api:${{ github.sha }},${{ env.ECR_REGISTRY }}/booking-api:latest
 
       - name: Build and push payment-api
@@ -150,11 +150,11 @@ jobs:
 
       - name: Update kubeconfig
         run: |
-          # Ã¢Å¡Â Ã¯Â¸Â BUG: cluster name nimbuscloud-platform-cluster no longer exists
+          # Ã¢Å¡Â Ã¯Â¸Â BUG: cluster name nimbuscloud-platform-cluster no longer exists
           # Should be: nimbuscloud-platform-cluster
           aws eks update-kubeconfig \
             --region ${{ env.AWS_REGION }} \
-            --name nimbuscloud-platform-cluster   # Ã¢â€ Â WRONG cluster name
+            --name nimbuscloud-platform-cluster   # Ã¢â€ Â WRONG cluster name
 
       - name: Deploy to Kubernetes
         run: |
