@@ -67,7 +67,7 @@ jobs:
 
       - name: Run tests
         working-directory: ./services/booking-api
-        run: npm test -- --passWithNoTests─────────────────────────────────────────────
+        run: npm test -- --passWithNoTests
   # ⚠️ MISSING: test job — no automated tests run
   # Candidate must add npm test / pytest / go test step
   # ─────────────────────────────────────────────
@@ -177,4 +177,5 @@ jobs:
           kubectl rollout status deployment/payment-api --timeout=120s
           kubectl rollout status deployment/auth-service --timeout=120s
           kubectl rollout status deployment/notification-service --timeout=120s
+
 
